@@ -16,6 +16,7 @@ the countries currencies.
 
 Plan:
 2 weeks of Researching and writing the code for the Money Converter program
+
 2 weeks of implementing our code using GUI.
 
 Estimate of Effort: About 4 weeks worth of effort, the actual coding of this program is going to easy, but the research and implementation of
