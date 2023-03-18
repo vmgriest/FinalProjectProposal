@@ -15,6 +15,7 @@ The user will be able to click on the country where they are from and the countr
 the countries currencies.
 
 Plan:
+
 2 weeks of Researching and writing the code for the Money Converter program
 
 2 weeks of implementing our code using GUI.
