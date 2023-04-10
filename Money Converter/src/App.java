@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -54,44 +56,74 @@ public class App extends Application
     Label resultLabel = new Label();
 
     @Override
-    public void start(Stage primaryStage) 
-    {
-        // Set up GUI components
-        Label fromLabel = new Label("From:");
-        Label toLabel = new Label("To:");
-        Button convertButton = new Button("Convert");
-        convertButton.setOnAction(e -> convert());
-        resultLabel.setAlignment(Pos.CENTER_RIGHT);
-        resultLabel.setPrefWidth(200);
+public void start(Stage primaryStage) {
+    // Set up GUI components
+    Label fromLabel = new Label("From:");
+    Label toLabel = new Label("To:");
+    Button convertButton = new Button("Convert");
+    convertButton.setOnAction(e -> convert());
+    resultLabel.setAlignment(Pos.CENTER_RIGHT);
+    resultLabel.setPrefWidth(200);
 
-        //Countries flags set up
+    // Set up choice boxes
+    fromBox.getItems().addAll("US Dollar", "Japanese Yen", "Australian Dollar", "Euro", "Canadian Dollar", "British Pound");
+    fromBox.setValue("US Dollar");
+    toBox.getItems().addAll("Japanese Yen", "Australian Dollar", "Euro", "Canadian Dollar", "British Pound", "US Dollar");
+    toBox.setValue("Japanese Yen");
 
+    // Set up flag images
+    ImageView fromFlag = new ImageView();
+    ImageView toFlag = new ImageView();
+    fromBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+        fromFlag.setImage(new Image(getFlagUrl(newValue)));
+    });
+    fromFlag.setImage(new Image(getFlagUrl(fromBox.getValue())));
+    toBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+        toFlag.setImage(new Image(getFlagUrl(newValue)));
+    });
+    toFlag.setImage(new Image(getFlagUrl(toBox.getValue())));
 
-        // Set up choice boxes
-        fromBox.getItems().addAll("US Dollar", "Japanese Yen", "Australian Dollar", "Euro", "Canadian Dollar", "British Pound");
-        fromBox.setValue("US Dollar");
-        toBox.getItems().addAll("Japanese Yen", "Australian Dollar", "Euro", "Canadian Dollar", "British Pound", "US Dollar");
-        toBox.setValue("Japanese Yen");
-        GridPane grid = new GridPane();
+    // Set up grid pane layout
+    GridPane grid = new GridPane();
     grid.setHgap(10);
     grid.setVgap(10);
     grid.setAlignment(Pos.CENTER);
     grid.add(fromLabel, 0, 0);
     grid.add(fromBox, 1, 0);
+    grid.add(fromFlag, 2, 0);
     grid.add(toLabel, 0, 1);
     grid.add(toBox, 1, 1);
-    grid.add(inputField, 0, 2);
-    grid.add(convertButton, 1, 2);
-    grid.add(resultLabel, 1, 3);
+    grid.add(toFlag, 2, 1);
+    grid.add(inputField, 0, 2, 3, 1);
+    grid.add(convertButton, 0, 3);
+    grid.add(resultLabel, 2, 3);
 
-    // scene and stage setup
-    Scene scene = new Scene(grid, 400, 250);
-    primaryStage.setTitle("Money Converter");
+    // Set up scene and show stage
+    Scene scene = new Scene(grid, 500, 400);
     primaryStage.setScene(scene);
+    primaryStage.setTitle("Money Converter");
     primaryStage.show();
-
-   
 }
+
+private String getFlagUrl(String country) {
+    switch (country) {
+        case "US Dollar":
+            return "https://flagcdn.com/w80/us.png";
+        case "Japanese Yen":
+            return "https://flagcdn.com/w80/jp.png";
+        case "Australian Dollar":
+            return "https://flagcdn.com/w80/au.png";
+        case "Euro":
+            return "https://flagcdn.com/w80/eu.png";
+        case "Canadian Dollar":
+            return "https://flagcdn.com/w80/ca.png";
+        case "British Pound":
+            return "https://flagcdn.com/w80/gb.png";
+        default:
+            return "";
+    }
+}
+
 
 // Convert class
 private void convert() 
