@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application 
@@ -58,6 +59,8 @@ public class App extends Application
     @Override
 public void start(Stage primaryStage) {
     // Set up GUI components
+    Label welcomeLabel = new Label("Welcome to Money Converter!");
+    welcomeLabel.setFont(new Font("Arial", 15));
     Label fromLabel = new Label("From:");
     Label toLabel = new Label("To:");
     Button convertButton = new Button("Convert");
@@ -88,15 +91,16 @@ public void start(Stage primaryStage) {
     grid.setHgap(10);
     grid.setVgap(10);
     grid.setAlignment(Pos.CENTER);
-    grid.add(fromLabel, 0, 0);
-    grid.add(fromBox, 1, 0);
-    grid.add(fromFlag, 2, 0);
-    grid.add(toLabel, 0, 1);
-    grid.add(toBox, 1, 1);
-    grid.add(toFlag, 2, 1);
-    grid.add(inputField, 0, 2, 3, 1);
-    grid.add(convertButton, 0, 3);
-    grid.add(resultLabel, 2, 3);
+    grid.add(welcomeLabel, 1, 0);
+    grid.add(fromLabel, 0, 1);
+    grid.add(fromBox, 1, 1);
+    grid.add(fromFlag, 2, 1);
+    grid.add(toLabel, 0, 2);
+    grid.add(toBox, 1, 2);
+    grid.add(toFlag, 2, 2);
+    grid.add(inputField, 0, 3, 3, 1);
+    grid.add(convertButton, 0, 4);
+    grid.add(resultLabel, 2, 4);
 
     // Set up scene and show stage
     Scene scene = new Scene(grid, 500, 400);
