@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application 
-{
+{	//hi
     // Conversion rates for currency USD, JPY, AUD, EUR, CAD, and GBP
     final double USD_JPY_RATE = 131.14;
     final double USD_AUD_RATE = 1.49;
